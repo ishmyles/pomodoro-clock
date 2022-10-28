@@ -15,8 +15,6 @@ function Clock() {
   });
 
   const [totalSeconds, setTotalSeconds] = useState(sessionTime * 60);
-  const [remainingSeconds, setRemainingSeconds] = useState(null);
-  const [timePercentage, setTimePercentage] = useState(null);
 
   const audio = useRef(null);
   const playBeep = (audioElem) => {
@@ -43,6 +41,7 @@ function Clock() {
       if (action === "increment") {
         if (isMaxTime(sessionTime)) {
           setSessionTime((prevSessionTime) => prevSessionTime + 1);
+          setTotalSeconds((prevTotalSecs) => prevTotalSecs + 60);
           setTimerTime((prevTime) => ({
             ...prevTime,
             minutes: prevTime.minutes + 1,
@@ -52,6 +51,7 @@ function Clock() {
       } else if (action === "decrement") {
         if (isMinTime(sessionTime)) {
           setSessionTime((prevSessionTime) => prevSessionTime - 1);
+          setTotalSeconds((prevTotalSecs) => prevTotalSecs - 60);
           setTimerTime((prevTime) => ({
             ...prevTime,
             minutes: prevTime.minutes - 1,
@@ -78,6 +78,7 @@ function Clock() {
 
       input = handleInputError(input);
       setSessionTime(input);
+      setTotalSeconds(input * 60);
       setTimerTime({ minutes: input, seconds: 0 });
     },
     handleBreakTimeInput: (input) => {
@@ -137,12 +138,14 @@ function Clock() {
             minutes: breakTime,
             seconds: 0,
           });
+          setTotalSeconds(breakTime * 60);
           setFocusTime(false);
         } else if (!isFocusTime) {
           setTimerTime({
             minutes: sessionTime,
             seconds: 0,
           });
+          setTotalSeconds(sessionTime * 60);
           setFocusTime(true);
         }
       }
@@ -158,19 +161,21 @@ function Clock() {
   }, [isCountingDown, isFocusTime, sessionTime, breakTime, timerTime]);
 
   return (
-    <div>
-      <Timer
-        timerTime={timerTime}
-        clockFunctions={clockFunctions}
-        isCountingDown={isCountingDown}
-        isFocusTime={isFocusTime}
-      />
+    <div id="clock">
+      <h1 id="heading">Pomodoro Clock</h1>
       <TimerSetter
         sessionTime={sessionTime}
         setSessionTime={setSessionTime}
         breakTime={breakTime}
         setBreakTime={setBreakTime}
         clockFunctions={clockFunctions}
+      />
+      <Timer
+        timerTime={timerTime}
+        totalSeconds={totalSeconds}
+        clockFunctions={clockFunctions}
+        isCountingDown={isCountingDown}
+        isFocusTime={isFocusTime}
       />
       <audio id="beep" src={beepSound} preload="auto" ref={audio}></audio>
     </div>

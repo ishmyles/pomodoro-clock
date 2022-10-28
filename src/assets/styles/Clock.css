@@ -1,0 +1,13 @@
+#heading {
+    margin-bottom: 50px;
+}
+
+#clock {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: 100vw;
+    height: 100vh;
+}

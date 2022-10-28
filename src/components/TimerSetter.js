@@ -1,4 +1,4 @@
-import "../assets/styles/Clock.css";
+import "../assets/styles/TimerSetter.css";
 
 function TimerSetter({ sessionTime, breakTime, clockFunctions }) {
   const { setSession, setBreak, handleSessionTimeInput, handleBreakTimeInput } =
@@ -15,7 +15,7 @@ function TimerSetter({ sessionTime, breakTime, clockFunctions }) {
   };
 
   return (
-    <div>
+    <div id="timer-setter">
       <div id="session-setter">
         <p id="session-label">Session Length</p>
         {/* <p id="session-length">{sessionTime}</p> */}
@@ -28,12 +28,22 @@ function TimerSetter({ sessionTime, breakTime, clockFunctions }) {
           value={sessionTime}
           onChange={handleSessionInputChange}
         />
-        <button id="session-increment" onClick={() => setSession("increment")}>
-          Increment Session
-        </button>
-        <button id="session-decrement" onClick={() => setSession("decrement")}>
-          Decrement Session
-        </button>
+        <div className="setter-btns">
+          <button
+            id="session-increment"
+            className="btn-setter btn-plus"
+            onClick={() => setSession("increment")}
+          >
+            +{/* <i className="bi bi-plus"></i> */}
+          </button>
+          <button
+            id="session-decrement"
+            className="btn-setter btn-minus"
+            onClick={() => setSession("decrement")}
+          >
+            -{/* <i className="bi bi-dash"></i> */}
+          </button>
+        </div>
       </div>
       <div id="break-setter">
         <p id="break-label">Break Length</p>
@@ -47,12 +57,22 @@ function TimerSetter({ sessionTime, breakTime, clockFunctions }) {
           value={breakTime}
           onChange={handleBreakInputChange}
         />
-        <button id="break-increment" onClick={() => setBreak("increment")}>
-          Increment Break
-        </button>
-        <button id="break-decrement" onClick={() => setBreak("decrement")}>
-          Decrement Break
-        </button>
+        <div className="setter-btns">
+          <button
+            id="break-increment"
+            className="btn-setter btn-plus"
+            onClick={() => setBreak("increment")}
+          >
+            +{/* <i className="bi bi-plus"></i> */}
+          </button>
+          <button
+            id="break-decrement"
+            className="btn-setter btn-minus"
+            onClick={() => setBreak("decrement")}
+          >
+            -{/* <i className="bi bi-dash"></i> */}
+          </button>
+        </div>
       </div>
     </div>
   );
