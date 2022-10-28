@@ -1,8 +1,8 @@
 import Timer from "./Timer.js";
 import TimerSetter from "./TimerSetter.js";
 import "../assets/styles/Clock.css";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import beepSound from "../assets/sounds/alarm-beep.wav";
 
 function Clock() {
   const [isCountingDown, setIsCountingDown] = useState(false);
@@ -17,6 +17,18 @@ function Clock() {
   const [totalSeconds, setTotalSeconds] = useState(sessionTime * 60);
   const [remainingSeconds, setRemainingSeconds] = useState(null);
   const [timePercentage, setTimePercentage] = useState(null);
+
+  const audio = useRef(null);
+  const playBeep = (audioElem) => {
+    const beep = audioElem;
+    beep.currentTime = 0;
+    beep.play();
+  };
+  const resetBeep = (audioElem) => {
+    const beep = audioElem;
+    beep.pause();
+    beep.currentTime = 0;
+  };
 
   const isMinTime = (time) => time > 1;
   const isMaxTime = (time) => time < 60;
@@ -78,6 +90,7 @@ function Clock() {
       setIsCountingDown((prevState) => !prevState);
     },
     resetTimer: () => {
+      resetBeep(audio.current);
       setIsCountingDown(false);
       setFocusTime(true);
       setSessionTime(25);
@@ -118,6 +131,7 @@ function Clock() {
           seconds: 59,
         }));
       } else if (timerTime.seconds < 0 && timerTime.minutes === 0) {
+        playBeep(audio.current);
         if (isFocusTime) {
           setTimerTime({
             minutes: breakTime,
@@ -131,7 +145,6 @@ function Clock() {
           });
           setFocusTime(true);
         }
-        return;
       }
       const countDown = setInterval(() => {
         setTimerTime((prevTime) => ({
@@ -159,6 +172,7 @@ function Clock() {
         setBreakTime={setBreakTime}
         clockFunctions={clockFunctions}
       />
+      <audio id="beep" src={beepSound} preload="auto" ref={audio}></audio>
     </div>
   );
 }
