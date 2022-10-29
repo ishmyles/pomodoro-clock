@@ -8,23 +8,30 @@ function Timer(props) {
   const remainingSeconds = minutes * 60 + seconds;
   const timePercentage = (remainingSeconds / totalSeconds) * 100;
 
+  const barColor =
+    timePercentage < 10
+      ? "#ff7477"
+      : timePercentage < 25
+      ? "#faa381"
+      : "#7be0ad";
+
   return (
     <div id="timer-wrapper">
-      <div id="clock-wrapper">
-        <div
-          id="progress-bar"
-          style={{
-            background: `conic-gradient(#736ced ${timePercentage}%, #bbb 0.01%)`,
-          }}
-        >
-          <div id="timer">
-            <div id="timer-content">
-              <p id="time-left">
-                {" "}
-                {formatTime(minutes)}:{formatTime(seconds)}
-              </p>
-              <p id="timer-label">{isFocusTime ? "Focus" : "Break"}</p>
-            </div>
+      <div
+        id="progress-bar"
+        style={{
+          background: `conic-gradient(${barColor} ${timePercentage}%, #bbb 0.01%)`,
+        }}
+      >
+        <div id="timer">
+          <div id="timer-content">
+            <p id="time-left">
+              {" "}
+              {formatTime(minutes)}:{formatTime(seconds)}
+            </p>
+            <p id="timer-label" className="text-uppercase">
+              {isFocusTime ? "Focus" : "Break"}
+            </p>
           </div>
         </div>
       </div>

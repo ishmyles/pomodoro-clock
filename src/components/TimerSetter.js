@@ -16,9 +16,10 @@ function TimerSetter({ sessionTime, breakTime, clockFunctions }) {
 
   return (
     <div id="timer-setter">
-      <div id="session-setter">
-        <p id="session-label">Session Length</p>
-        {/* <p id="session-length">{sessionTime}</p> */}
+      <div id="session-setter" className="setter-group">
+        <p id="session-label" className="setter-type">
+          Session Length
+        </p>
         <input
           type="number"
           min={minTime}
@@ -34,20 +35,21 @@ function TimerSetter({ sessionTime, breakTime, clockFunctions }) {
             className="btn-setter btn-plus"
             onClick={() => setSession("increment")}
           >
-            +{/* <i className="bi bi-plus"></i> */}
+            +
           </button>
           <button
             id="session-decrement"
             className="btn-setter btn-minus"
             onClick={() => setSession("decrement")}
           >
-            -{/* <i className="bi bi-dash"></i> */}
+            -
           </button>
         </div>
       </div>
-      <div id="break-setter">
-        <p id="break-label">Break Length</p>
-        {/* <p id="break-length">{breakTime}</p> */}
+      <div id="break-setter" className="setter-group">
+        <p id="break-label" className="setter-type">
+          Break Length
+        </p>
         <input
           type="number"
           min={minTime}
@@ -63,14 +65,14 @@ function TimerSetter({ sessionTime, breakTime, clockFunctions }) {
             className="btn-setter btn-plus"
             onClick={() => setBreak("increment")}
           >
-            +{/* <i className="bi bi-plus"></i> */}
+            +
           </button>
           <button
             id="break-decrement"
             className="btn-setter btn-minus"
             onClick={() => setBreak("decrement")}
           >
-            -{/* <i className="bi bi-dash"></i> */}
+            -
           </button>
         </div>
       </div>

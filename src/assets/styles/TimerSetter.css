@@ -1,13 +1,14 @@
 :root {
     --btn-green: #7fc8f8;
     --btn-pink: #ff8fab;
+    --light-brown-border: 0.5px solid #d5bdaf;
+    --light-brown-shadow: 5px 10px 15px #e3d5ca;
 }
 
 #timer-setter {
     display: flex;
     flex-direction: row;
-    gap: 50px;
-    /* margin-top: 3%; */
+    gap: 25px;
 }
 
 input::-webkit-outer-spin-button,
@@ -17,7 +18,10 @@ input::-webkit-inner-spin-button {
 }
 
 input[type=number] {
+    font-family: 'Comfortaa', sans-serif;
     -moz-appearance: textfield;
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 
 input {
@@ -29,8 +33,21 @@ input {
     border: none;
 }
 
+.setter-group {
+    width: 155px;
+    height: 155px;
+    padding: 20px 10px;
+    border: var(--light-brown-border);
+    border-radius: 25px;
+    box-shadow: var(--light-brown-shadow);
+}
+
+.setter-type {
+    font-family: 'Montserrat Alternates', sans-serif;
+}
+
 .setter-btns > .btn-setter:first-of-type{
-    margin-right: 10px;
+    margin-right: 15px;
 }
 
 .btn-setter {
@@ -43,6 +60,7 @@ input {
 }
 
 .btn-setter:hover {
+    filter: brightness(110%);
     cursor: pointer;
 }
 
@@ -54,9 +72,6 @@ input {
     background-color: var(--btn-pink);
 }
 
-/* .bi-plus, .bi-dash {
-    font-size: 2em;
-} */
 
 @media (min-width: 1000px) {
     #timer-setter {

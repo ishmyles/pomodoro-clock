@@ -100,6 +100,7 @@ function Clock() {
         minutes: 25,
         seconds: 0,
       });
+      setTotalSeconds(25 * 60);
     },
     formatTime: (integer) => {
       return integer.toLocaleString("en-US", {

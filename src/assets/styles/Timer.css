@@ -1,3 +1,8 @@
+:root {
+    --progress-bar-shadow: 5px 5px 15px #e3d5ca;
+    --text-blue: #238cd7;
+    --text-black: #323232;
+}
 
 #timer-wrapper {
     display: flex;
@@ -13,16 +18,14 @@
     width: 360px;
     height: 360px;
     border-radius: 50%;
-    /* border: 1px solid grey; */
 }
 
 #progress-bar {
-    /* width: 400px;
-    height: 400px; */
-    width: 300px;
-    height: 300px;
+    width: 325px;
+    height: 325px;
     border-radius: 50%;
-    padding: 20px;
+    padding: 30px;
+    box-shadow: var(--progress-bar-shadow);
 }
 
 #timer {
@@ -34,7 +37,6 @@
 }
 
 #timer-content {
-    /* position: absolute; */
     width: fit-content;
     height: fit-content;
     padding: 30% 0 0 0;
@@ -42,8 +44,21 @@
 }
 
 #time-left {
+    font-family: 'Titan One', sans-serif;
+    color: var(--text-blue);
     font-size: 4em;
     margin-bottom: 10px;
+}
+
+#timer-label {
+    font-family: 'Comic Neue', sans-serif; 
+    color: var(--text-black);
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.text-uppercase {
+    text-transform: uppercase;
 }
 
 #timer-buttons {
@@ -55,12 +70,19 @@
 }
 
 .btn-timer {
-    /* width: 60px;
-    height: 60px; */
+    color: var(--text-black);
     width: fit-content;
     height: fit-content;
     background-color: inherit;
     border: none;
+}
+
+.btn-timer:hover {
+    cursor: pointer;
+}
+
+.btn-timer:active {
+    filter: brightness(200%);
 }
 
 #start_stop {
@@ -69,4 +91,17 @@
 
 #reset {
     font-size: 2.5em;
+}
+
+
+@media (min-width: 1000px) {
+    #progress-bar {
+        width: 400px;
+        height: 400px;
+        padding: 30px;
+    }
+
+    #timer-content {
+        padding: 35% 0 0 0;
+    }
 }
